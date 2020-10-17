@@ -1,37 +1,9 @@
-
-# Github Action for Google Cloud Dataproc cluster
-
-An GitHub Action for creating Google Cloud Dataproc cluster.
-
-## Usage
-
-```yaml
-- name: Create Google Cloud Dataproc cluster
-  uses: vishnudxb/gcloud-dataproc-creation@master
-  with:
-    cluster: "your dataproc cluster name"
-    region: "Your dataproc luster region"
-    project: "Your gcloud project id"
-    initialization-actions: "gs://<your bucket>/<initialization-script.sh>"
-    master-boot-disk-size: "500GB"
-    master-boot-disk-type: "pd-standard"
-    master-machine-type: "n1-standard-2"
-    max-idle: "1h"
-    num-masters: 1
-    worker-boot-disk-size: "500GB"
-    worker-boot-disk-type: "pd-standard"
-    worker-machine-type: "n1-standard-2"
-    zone: "us-east1-b"
-    image-version: "preview-ubuntu18"
-    metadata: "PIP_PACKAGES=$(sed -e '/^#/d' -e 's/#.*$//' -e 's/ *$//g' -e '/^\s*$/d' requirements.txt | tr '\n' ' ')"
-    scopes: "https://www.googleapis.com/auth/cloud-platform"
-    num-workers: 2
-    properties: "spark:spark.scheduler.mode=FIFO"
-```
-
-### The inputs description:
-
-```yaml
+name: 'Gcloud Dataproc cluster creation!!'
+description: 'Gcloud Dataproc cluster creation!!'
+author: 'Vishnu Nair'
+branding:
+  icon: 'cloud'
+  color: 'blue'
 inputs:
   cluster:
     description: 'Enter your gcloud dataproc cluster name'
@@ -100,4 +72,25 @@ inputs:
   properties:
     description: 'Specifies configuration properties for installed packages, such as Hadoop and Spark.'
     required: true
-```
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.cluster }}
+    - ${{ inputs.region }}
+    - ${{ inputs.project }}
+    - ${{ inputs.initialization_actions_script_bucket_name }}
+    - ${{ inputs.master-boot-disk-size }}
+    - ${{ inputs.master-boot-disk-type }}
+    - ${{ inputs.master-machine-type }}
+    - ${{ inputs.max-idle }}
+    - ${{ inputs.num-masters }}
+    - ${{ inputs.worker-boot-disk-size }}
+    - ${{ inputs.worker-boot-disk-type }}
+    - ${{ inputs.worker-machine-type }}
+    - ${{ inputs.zone }}
+    - ${{ inputs.image-version }}
+    - ${{ inputs.metadata }}
+    - ${{ inputs.scopes }}
+    - ${{ inputs.num-workers }}
+    - ${{ inputs.properties }}    
