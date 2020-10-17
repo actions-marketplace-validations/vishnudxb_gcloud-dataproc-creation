@@ -1,6 +1,8 @@
 
 # Github Action for creating Google Cloud Dataproc cluster
 
+A Github Action to create a dataproc cluster for your test use-cases.
+
 ## Usage
 
 ```yaml
