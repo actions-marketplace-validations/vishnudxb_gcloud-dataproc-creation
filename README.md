@@ -111,3 +111,16 @@ inputs:
     description: 'Specifies configuration properties for installed packages, such as Hadoop and Spark.'
     required: true
 ```
+
+### After your testing you can delete the dataproc cluster you created by running the below action.
+
+```yaml
+
+- name: Delete Google Cloud Dataproc cluster
+  uses: vishnudxb/gcloud-dataproc-deletion@main
+  with:
+    cluster: "your dataproc cluster name"
+    region: "Your dataproc luster region"
+    project: "Your gcloud project id"
+
+```
