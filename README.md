@@ -1,7 +1,5 @@
 
-# Github Action for Google Cloud Dataproc cluster
-
-An GitHub Action for creating Google Cloud Dataproc cluster.
+# Github Action for creating Google Cloud Dataproc cluster
 
 ## Usage
 
@@ -23,7 +21,7 @@ An GitHub Action for creating Google Cloud Dataproc cluster.
     worker-machine-type: "n1-standard-2"
     zone: "us-east1-b"
     image-version: "preview-ubuntu18"
-    metadata: "PIP_PACKAGES=$(sed -e '/^#/d' -e 's/#.*$//' -e 's/ *$//g' -e '/^\s*$/d' requirements.txt | tr '\n' ' ')"
+    metadata: "PIP_PACKAGES=$(sed -e '/^#/d' -e 's/#.*$//' -e 's/ *$//g' requirements.txt | tr '\n' ' ')"
     scopes: "https://www.googleapis.com/auth/cloud-platform"
     num-workers: 2
     properties: "spark:spark.scheduler.mode=FIFO"
