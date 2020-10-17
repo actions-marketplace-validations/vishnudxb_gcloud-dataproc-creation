@@ -6,6 +6,16 @@ A Github Action to create a dataproc cluster for your test use-cases.
 ## Usage
 
 ```yaml
+# Setup gcloud CLI
+- uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+  with:
+    version: '314.0.0'
+    service_account_key: ${{ secrets.service_account_key }}
+    service_account_email: ${{ secrets.service_account_email }}
+    project_id: ${{ secrets.project_id }}
+    export_default_credentials: true
+- run: gcloud info
+
 - name: Create Google Cloud Dataproc cluster
   uses: vishnudxb/gcloud-dataproc-creation@main
   with:
