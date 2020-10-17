@@ -5,7 +5,7 @@
 
 ```yaml
 - name: Create Google Cloud Dataproc cluster
-  uses: vishnudxb/gcloud-dataproc-creation@master
+  uses: vishnudxb/gcloud-dataproc-creation@main
   with:
     cluster: "your dataproc cluster name"
     region: "Your dataproc luster region"
