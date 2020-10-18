@@ -5,7 +5,7 @@ set -e
 cluster=$1
 region=$2
 project=$3
-initialization_actions_script_bucket_name=$4
+initialization_actions=$4
 master_boot_disk_size=$5
 master_boot_disk_type=$6
 master_machine_type=$7
@@ -20,13 +20,14 @@ metadata=$15
 scopes=$16
 num_workers=$17
 properties=$18
+labels=$19
 
 gcloud dataproc clusters create \
     $cluster \
     --region=$region \
     --project=$project \
     --enable-component-gateway \
-    --initialization-actions=$initialization_actions_script_bucket_name \
+    --initialization-actions=$initialization_actions \
     --master-boot-disk-size=$master_boot_disk_size \
     --master-boot-disk-type=$master_boot_disk_type \
     --master-machine-type=$master_machine_type \
@@ -40,4 +41,5 @@ gcloud dataproc clusters create \
     --metadata=$metadata \
     --scopes=$scopes \
     --num-workers=$num_workers \
-    --properties=$properties
+    --properties=$properties \
+    --labels=$19

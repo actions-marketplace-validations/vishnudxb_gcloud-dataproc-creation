@@ -37,6 +37,8 @@ A Github Action to create a dataproc cluster for your test use-cases.
     scopes: "https://www.googleapis.com/auth/cloud-platform"
     num-workers: 2
     properties: "spark:spark.scheduler.mode=FIFO"
+    labels: "service=web-app,env=dev"
+
 ```
 
 ### The inputs description:
@@ -53,7 +55,7 @@ inputs:
   project:
     description: 'Enter your gcloud project id'
     required: true
-  initialization_actions_script_bucket_name:
+  initialization_actions:
     description: 'Executables or scripts that will run on all nodes in your cluster immediately after the cluster is set up'
     required: true
   master-boot-disk-size:
@@ -110,6 +112,9 @@ inputs:
   properties:
     description: 'Specifies configuration properties for installed packages, such as Hadoop and Spark.'
     required: true
+  labels:
+    description: 'List of label KEY=VALUE pairs to add.'
+    required: false
 ```
 
 ### After your testing you can delete the dataproc cluster you created by running the below action.

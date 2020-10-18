@@ -15,7 +15,7 @@ inputs:
   project:
     description: 'Enter your gcloud project id'
     required: true
-  initialization_actions_script_bucket_name:
+  initialization_actions:
     description: 'Executables or scripts that will run on all nodes in your cluster immediately after the cluster is set up'
     required: true
   master-boot-disk-size:
@@ -72,6 +72,10 @@ inputs:
   properties:
     description: 'Specifies configuration properties for installed packages, such as Hadoop and Spark.'
     required: true
+  labels:
+    description: 'List of label KEY=VALUE pairs to add.'
+    required: false
+    default: env=test
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -79,7 +83,7 @@ runs:
     - ${{ inputs.cluster }}
     - ${{ inputs.region }}
     - ${{ inputs.project }}
-    - ${{ inputs.initialization_actions_script_bucket_name }}
+    - ${{ inputs.initialization_actions }}
     - ${{ inputs.master-boot-disk-size }}
     - ${{ inputs.master-boot-disk-type }}
     - ${{ inputs.master-machine-type }}
@@ -93,4 +97,5 @@ runs:
     - ${{ inputs.metadata }}
     - ${{ inputs.scopes }}
     - ${{ inputs.num-workers }}
-    - ${{ inputs.properties }}    
+    - ${{ inputs.properties }}
+    - ${{ inputs.labels }}
